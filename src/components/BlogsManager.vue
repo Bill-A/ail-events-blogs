@@ -21,7 +21,7 @@
           </thead>
           <tbody>
             <tr v-for="blog in blogs" :key="blog.id">
-              <td>{{ blog.publicationDate }}</td>
+              <td>{{ blog.publicationDate | moment("MMM D, YYYY") }}</td>
               <td>{{ blog.title }}</td>
               <td>{{ blog.subTitle }}</td>
               <td>{{ blog.shortDescription }}</td>
@@ -44,12 +44,17 @@
           <p class="hint-text">Enter details of a blog entry</p>
           <b-input-group inline>
             <date-picker
+              class="datepicker"
               name="date"
               placeholder="Date"
               required="required"
               v-model="model.publicationDate"
               :config="options"
-            ></date-picker>
+            >
+              <!--<span class="datepicker-icon">-->
+              <!--<i class="fa fa-calendar fa-fw"></i>-->
+              <!--</span>-->
+            </date-picker>
           </b-input-group>
           <b-form-input
             type="text"
@@ -68,14 +73,14 @@
           <b-form-textarea
             rows="3"
             max-rows="6"
-            placeholder="Description"
+            placeholder="Short Description"
             required="required"
             v-model="model.shortDescription"
           ></b-form-textarea>
           <b-form-input
             type="text"
             class="form-control"
-            placeholder="Link to Blog"
+            placeholder="Link to full blog"
             required="required"
             v-model="model.url"
           ></b-form-input>
@@ -103,7 +108,18 @@ export default {
       date: new Date(),
       options: {
         format: "MM/DD/YYYY",
-        useCurrent: false
+        useCurrent: false,
+        icons: {
+          time: "fa fa-clock",
+          date: "fa fa-calendar",
+          up: "fa fa-chevron-up",
+          down: "fa fa-chevron-down",
+          previous: "fa fa-chevron-left",
+          next: "fa fa-chevron-right",
+          today: "a fa-sun-o",
+          clear: "fa fa-trash",
+          close: "fa fa-remove"
+        }
       }
     };
   },
@@ -243,4 +259,8 @@ b-btn {
 .signup-form form a:hover {
   text-decoration: underline;
 }
+
+/*.signup-form .datepicker {*/
+/*background-color: white;*/
+/*}*/
 </style>

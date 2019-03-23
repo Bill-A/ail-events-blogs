@@ -1,13 +1,17 @@
 <template>
   <div id="app">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
     <b-navbar toggleable="md" type="dark" variant="dark">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-navbar-brand to="/">agile Innovation Labs</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/events-manager">Events Manager</b-nav-item>
-          <b-nav-item to="/blogs-manager">Blogs Manager</b-nav-item>
+          <b-nav-item to="/events">Events Manager</b-nav-item>
+          <b-nav-item to="/blogs">Blogs Manager</b-nav-item>
           <b-nav-item href="#" @click.prevent="login" v-if="!activeUser"
             >Login</b-nav-item
           >

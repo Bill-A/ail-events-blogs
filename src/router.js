@@ -27,7 +27,7 @@ let router = new Router({
       component: Auth.handleCallback()
     },
     {
-      path: "/events-manager",
+      path: "/events",
       name: "EventsManager",
       component: EventsManager,
       meta: {
@@ -35,7 +35,7 @@ let router = new Router({
       }
     },
     {
-      path: "/blogs-manager",
+      path: "/blogs",
       name: "BlogsManager",
       component: BlogsManager,
       meta: {

@@ -12,6 +12,7 @@ const oktaJwtVerifier = new OktaJwtVerifier({
   issuer: "https://dev-349174.okta.com/oauth2/default"
 });
 
+let user;
 let app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -31,10 +32,14 @@ app.use((req, res, next) => {
         uid: jwt.claims.uid,
         email: jwt.claims.sub
       };
+      user = req.user.email;
       next();
     })
     .catch(next); // jwt did not verify!
 });
+
+console.log("user: ", user);
+
 
 let database = new Sequelize("aIL_web", "bill-a", "BeautifulStruggle!", {
   host: "localhost",
@@ -60,7 +65,6 @@ epilogue.initialize({
 // Create the dynamic REST resource for our Event model
 let eventResource = epilogue.resource({
   model: Event,
-  Blog,
   endpoints: ["/events", "/events/:id"]
 });
 

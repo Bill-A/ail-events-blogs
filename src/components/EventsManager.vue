@@ -21,8 +21,8 @@
           </thead>
           <tbody>
             <tr v-for="event in events" :key="event.id">
-              <td>{{ event.startDate }}</td>
-              <td>{{ event.endDate }}</td>
+              <td>{{ event.startDate | moment("MMM D, YYYY - h:mm a") }}</td>
+              <td>{{ event.endDate | moment("MMM D, YYYY - h:mm a") }}</td>
               <td>{{ event.title }}</td>
 
               <td>{{ event.location }}</td>
@@ -59,20 +59,6 @@
               :config="options"
             ></date-picker>
           </b-input-group>
-          <!--<b-input-group inline>-->
-          <!--<b-form-input-->
-          <!--type="text"-->
-          <!--placeholder="Start Date/Time"-->
-          <!--required="required"-->
-          <!--v-model="model.startTime"-->
-          <!--&gt;</b-form-input>-->
-          <!--<b-form-input-->
-          <!--type="text"-->
-          <!--placeholder="End Date/Time"-->
-          <!--required="required"-->
-          <!--v-model="model.endTime"-->
-          <!--&gt;</b-form-input>-->
-          <!--</b-input-group>-->
           <b-form-input
             type="text"
             class="form-control"
@@ -117,8 +103,20 @@ export default {
       model: {},
       date: new Date(),
       options: {
-        format: "MM/DD/YYYY, HH:MM",
-        useCurrent: false
+        format: "MM/DD/YYYY HH:MM",
+        useCurrent: false,
+        sideBySide: true,
+        icons: {
+          time: "fa fa-clock",
+          date: "fa fa-calendar",
+          up: "fa fa-chevron-up",
+          down: "fa fa-chevron-down",
+          previous: "fa fa-chevron-left",
+          next: "fa fa-chevron-right",
+          today: "a fa-sun-o",
+          clear: "fa fa-trash",
+          close: "fa fa-remove"
+        }
       }
     };
   },
